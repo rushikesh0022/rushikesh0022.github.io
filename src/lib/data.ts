@@ -14,6 +14,8 @@ import {
 import { Link, Skill } from "./types";
 import { MdHome, MdPostAdd, MdWork } from "react-icons/md";
 
+export const projectUrl = "https://github.com/RealTriassic";
+
 export const navLinks: Link[] = [
   {
     name: "/home",

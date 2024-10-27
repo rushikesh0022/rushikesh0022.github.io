@@ -1,4 +1,4 @@
-import { socialLinks } from "@/lib/data";
+import { projectUrl, socialLinks } from "@/lib/data";
 import Link from "next/link";
 import { FaCode } from "react-icons/fa";
 import Tooltip from "../Tooltip";
@@ -26,10 +26,7 @@ export default function Footer() {
         ))}
       </div>
 
-      <Link
-        href="https://github.com/RealTriassic/Website"
-        rel="noopener noreferrer"
-      >
+      <Link href={projectUrl} rel="noopener noreferrer">
         <div className="bg-gray-300 shadow-md shadow-gray-200 rounded-full py-1 px-6 h-10 flex items-center gap-3 transition-transform duration-200 hover:translate-y-[-4px]">
           <FaCode className="h-5 w-5" />
           <span>View Source Code</span>
