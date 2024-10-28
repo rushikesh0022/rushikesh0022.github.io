@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import { getAllPosts, getPost, Post } from "@/lib/blog";
 
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
 export async function generateStaticParams() {
   const posts: Post[] = await getAllPosts();
 
@@ -9,12 +13,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const post: Post = await getPost(params.slug);
+export default async function PostPage(props: Props) {
+  const { slug } = await props.params;
+  const post: Post = await getPost(slug);
 
   if (!post) {
     notFound();
