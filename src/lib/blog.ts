@@ -2,7 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-export const POSTS_PATH = path.join(process.cwd(), "posts");
+export const POSTS_PATH = path.join(process.cwd(), "src", "app", "blog", "_posts");
 
 export interface Post {
   title?: string;
