@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "turbo": "bun dlx turbo@2.2.3",
+    "turbo": "bunx turbo@2.2.3",
     "build:turbo": "bun turbo run build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
