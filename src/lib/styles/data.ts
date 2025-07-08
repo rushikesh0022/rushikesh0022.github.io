@@ -4,17 +4,18 @@ import {
   BiLogoJavascript,
   BiLogoTypescript,
   BiLogoJava,
-  BiLogoDocker,
   BiLogoTux,
   BiLogoReact,
   BiLogoGithub,
-  BiLogoTwitter,
-  BiLogoDiscordAlt,
+  BiLogoCPlusPlus,
+  BiLogoPython,
+  BiLogoLinkedin,
 } from "react-icons/bi";
+import { SiC, SiR, SiLeetcode, SiCodechef, SiCodeforces } from "react-icons/si";
 import { Link, Skill } from "./types";
 import { MdHome, MdPostAdd, MdWork } from "react-icons/md";
 
-export const projectUrl = "https://github.com/RealTriassic";
+export const projectUrl = "https://github.com/rushikesh0022";
 
 export const navLinks: Link[] = [
   {
@@ -36,19 +37,29 @@ export const navLinks: Link[] = [
 
 export const socialLinks: Link[] = [
   {
-    name: "Twitter",
-    href: "https://twitter.com/RealTriassic",
-    icon: BiLogoTwitter,
-  },
-  {
     name: "GitHub",
-    href: "https://github.com/RealTriassic",
+    href: "https://github.com/rushikesh0022",
     icon: BiLogoGithub,
   },
   {
-    name: "Discord",
-    href: "https://triassic.dev/discord",
-    icon: BiLogoDiscordAlt,
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/rushikesh-reddy-153103293/",
+    icon: BiLogoLinkedin,
+  },
+  {
+    name: "LeetCode",
+    href: "https://leetcode.com/u/KLVR/",
+    icon: SiLeetcode,
+  },
+  {
+    name: "CodeChef",
+    href: "https://www.codechef.com/users/rushikesh_1984",
+    icon: SiCodechef,
+  },
+  {
+    name: "Codeforces",
+    href: "https://codeforces.com/profile/rushikesh660080",
+    icon: SiCodeforces,
   },
 ];
 
@@ -78,8 +89,20 @@ export const skillBadges: Skill[] = [
     icon: BiLogoJava,
   },
   {
-    name: "Docker",
-    icon: BiLogoDocker,
+    name: "C",
+    icon: SiC,
+  },
+  {
+    name: "C++",
+    icon: BiLogoCPlusPlus,
+  },
+  {
+    name: "Python",
+    icon: BiLogoPython,
+  },
+  {
+    name: "R",
+    icon: SiR,
   },
   {
     name: "Linux",

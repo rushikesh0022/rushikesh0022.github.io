@@ -1,4 +1,4 @@
-import { projectUrl, socialLinks } from "@/lib/data";
+import { projectUrl, socialLinks } from "@/lib/styles/data";
 import Link from "next/link";
 import { FaCode } from "react-icons/fa";
 import Tooltip from "../Tooltip";
@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div className="flex justify-center items-center gap-6 p-4 text-black">
       <div className="bg-gray-300 shadow-md shadow-gray-200 rounded-full py-1 px-6 h-10 flex items-center">
-        <p>© 2024 Triassic</p>
+        <p>© 2025 Rushikesh</p>
       </div>
 
       <div className="bg-gray-300 shadow-md shadow-gray-200 rounded-full py-1 px-6 h-10 flex items-center gap-6">
@@ -29,7 +29,7 @@ export default function Footer() {
       <Link href={projectUrl} rel="noopener noreferrer">
         <div className="bg-gray-300 shadow-md shadow-gray-200 rounded-full py-1 px-6 h-10 flex items-center gap-3 transition-transform duration-200 hover:translate-y-[-4px]">
           <FaCode className="h-5 w-5" />
-          <span>View Source Code</span>
+          <span>View Github Contributions</span>
         </div>
       </Link>
     </div>

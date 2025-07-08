@@ -1,9 +1,9 @@
 "use client";
 
-import { navLinks } from "@/lib/data";
+import { navLinks } from "@/lib/styles/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { MdCoffee } from "react-icons/md";
 import { IconType } from "react-icons";
 
@@ -17,7 +17,11 @@ const NavLink = ({
   Icon?: IconType;
 }) => {
   const pathname = usePathname();
-  const isActive = href === pathname;
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    setIsActive(href === pathname);
+  }, [href, pathname]);
 
   return (
     <Link
@@ -27,6 +31,7 @@ const NavLink = ({
           ? "bg-gray-200 text-black"
           : "text-white hover:bg-gray-300 hover:text-black"
       }`}
+      suppressHydrationWarning={true}
     >
       {Icon && <Icon />} {children}
     </Link>
@@ -46,8 +51,9 @@ export default function Header() {
       <Link
         href="/coffee"
         className="text-lg flex items-center gap-2 px-2 bg-blue-200 text-black"
+        suppressHydrationWarning={true}
       >
-        buy me a coffee?
+        Contact Me?
         <MdCoffee className="text-lg" />
       </Link>
     </div>

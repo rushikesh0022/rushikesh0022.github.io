@@ -29,8 +29,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# env files (can opt-in for commiting if needed)
+# Environment variables
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -38,3 +39,51 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Bun
+.bun
+bun.lockb
+
+# Email service configuration
+resend-api-key.txt
+email-templates/
+*.email.config.js
+mail-config.json
+
+# IDE and editor files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.backup
+*.bak
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Additional logs
+*.log
+logs/
