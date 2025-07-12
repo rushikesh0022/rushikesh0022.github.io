@@ -46,7 +46,13 @@ export default function CoffeePage() {
       if (response.ok && result.data) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
-        console.log('Email sent successfully:', result.data);
+        console.log('Contact form submitted successfully:', result.data);
+        
+        // Log additional info in development mode
+        if (result.development) {
+          console.log('Development mode - no actual email sent');
+          console.log('Form data received:', { name: formData.name, email: formData.email, message: formData.message });
+        }
       } else {
         console.error('API Error:', result.error);
         setSubmitStatus('error');
@@ -204,6 +210,9 @@ export default function CoffeePage() {
                 <div className="bg-green-900/20 border border-green-600/30 rounded-lg p-4">
                   <p className="text-green-300 text-sm">
                     ✅ Message sent successfully! I&apos;ll get back to you soon.
+                  </p>
+                  <p className="text-green-400 text-xs mt-1">
+                    💡 Development mode: Form data logged to console
                   </p>
                 </div>
               )}

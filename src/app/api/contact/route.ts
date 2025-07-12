@@ -12,6 +12,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 're_xxxxxxxxxx') {
+      console.log('Resend API key not configured, logging contact form submission:', {
+        name,
+        email,
+        message,
+        timestamp: new Date().toISOString()
+      });
+
+      return NextResponse.json({ 
+        data: { id: 'dev-email-id-' + Date.now() },
+        message: 'Contact form received (development mode - no email sent)',
+        development: true,
+        note: 'Configure RESEND_API_KEY in .env.local to enable actual email sending'
+      });
+    }
+
     // Environment variables with fallbacks for development
     const fromEmail = process.env.FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
     const toEmail = process.env.TO_EMAIL || 'vanipenta.rushikesh2023@vitstudent.ac.in';
