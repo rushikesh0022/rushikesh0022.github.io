@@ -11,11 +11,11 @@
     "blog"
   ],
   "description": "A portfolio website made using the Next.js framework and TailwindCSS. Written in Typescript.",
-  "homepage": "https://triassic.dev",
+  "homepage": "https://rushikesh0022.github.io",
   "bugs": "https://github.com/RealTriassic/Website/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RealTriassic/Website"
+    "url": "https://github.com/rushikesh0022/rushikesh0022.github.io"
   },
   "author": "Triassic",
   "license": "MIT",
