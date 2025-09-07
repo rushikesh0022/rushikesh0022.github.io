@@ -44,6 +44,15 @@ jobs:
       - name: Build with Next.js
         run: bun run build
 
+      - name: Verify static export exists
+        run: |
+          if [ ! -d "out" ]; then
+            echo "Error: Next.js static export directory 'out' was not generated." >&2
+            echo "Hint: Ensure output: 'export' is set in next.config.ts and that the build completed successfully." >&2
+            exit 1
+          fi
+          echo "Contents of ./out:" && ls -la out
+
       - name: Add .nojekyll file
         run: touch out/.nojekyll
 
