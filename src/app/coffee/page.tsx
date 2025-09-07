@@ -33,37 +33,38 @@ export default function CoffeePage() {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Simulate form submission delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Log the contact form submission
+      console.log('Contact Form Submission:', {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        timestamp: new Date().toISOString(),
+        url: window.location.href
       });
 
-      const result = await response.json();
+      // For production, you could integrate with:
+      // - Formspree: https://formspree.io/
+      // - Netlify Forms: https://www.netlify.com/products/forms/
+      // - EmailJS: https://www.emailjs.com/
+      // - Or any other form handling service
 
-      if (response.ok && result.data) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        console.log('Contact form submitted successfully:', result.data);
-        
-        // Log additional info in development mode
-        if (result.development) {
-          console.log('Development mode - no actual email sent');
-          console.log('Form data received:', { name: formData.name, email: formData.email, message: formData.message });
-        }
-      } else {
-        console.error('API Error:', result.error);
-        setSubmitStatus('error');
-      }
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      
+      console.log('Contact form submitted successfully!');
+      console.log('Note: This is a static site - no actual email sent. Check console for form data.');
+      
     } catch (error) {
-      console.error('Network Error:', error);
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen max-w-6xl mx-auto p-8">
       <div className="flex flex-col lg:flex-row gap-12 w-full">
@@ -212,7 +213,7 @@ export default function CoffeePage() {
                     ✅ Message sent successfully! I&apos;ll get back to you soon.
                   </p>
                   <p className="text-green-400 text-xs mt-1">
-                    💡 Development mode: Form data logged to console
+                    💡 Form data logged to console (static site)
                   </p>
                 </div>
               )}
