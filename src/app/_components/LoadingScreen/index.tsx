@@ -12,6 +12,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [isComplete, setIsComplete] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [canSkip, setCanSkip] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,26 +24,27 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         setProgress((prev) => {
           if (prev >= 100) {
             clearInterval(interval);
+            setCanSkip(true); // Enable clicking when 100% is reached
             setTimeout(() => {
               setIsLoaded(true);
               setTimeout(() => {
                 setIsComplete(true);
-                setTimeout(onComplete, 600);
-              }, 1000);
-            }, 600);
+                setTimeout(onComplete, 300);
+              }, 200);
+            }, 100);
             return 100;
           }
           
-          // Realistic loading curve
+          // Faster loading curve for 3 seconds total
           if (prev <= 50) {
-            return prev + Math.round(Math.random() * 5) + 2;
+            return prev + Math.round(Math.random() * 8) + 4;
           } else if (prev <= 90) {
-            return prev + Math.round(Math.random() * 2) + 1;
+            return prev + Math.round(Math.random() * 4) + 2;
           } else {
-            return prev + Math.round(Math.random());
+            return prev + Math.round(Math.random() * 2) + 1;
           }
         });
-      }, 120);
+      }, 60);
     };
 
     startLoading();
@@ -59,6 +61,16 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     }
   };
 
+  const handleClick = () => {
+    if (canSkip && progress >= 100) {
+      setIsLoaded(true);
+      setTimeout(() => {
+        setIsComplete(true);
+        setTimeout(onComplete, 300);
+      }, 100);
+    }
+  };
+
   return (
     <AnimatePresence>
       {!isComplete && (
@@ -71,8 +83,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             filter: "blur(10px)"
           }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="fixed inset-0 z-50 bg-black overflow-hidden cursor-none"
+          className={`fixed inset-0 z-50 bg-black overflow-hidden ${canSkip ? 'cursor-pointer' : 'cursor-none'}`}
           onMouseMove={handleMouseMove}
+          onClick={handleClick}
         >
           {/* Mouse Follower */}
           <motion.div
@@ -147,8 +160,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             >
               {/* Loading Button */}
               <motion.div
-                className={`relative group ${isLoaded ? 'pointer-events-none' : 'cursor-pointer'}`}
-                whileHover={{ scale: 1.02 }}
+                className={`relative group ${isLoaded ? 'pointer-events-none' : ''} ${canSkip ? 'cursor-pointer' : 'cursor-default'}`}
+                whileHover={canSkip ? { scale: 1.02 } : {}}
                 style={{
                   background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.1) 0%, transparent 50%)`,
                 }}
@@ -195,11 +208,14 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                     
                     {!isLoaded && (
                       <motion.div
-                        className="mt-4 text-white/40 text-sm tracking-[0.3em] font-light"
-                        animate={{ opacity: [0.4, 0.8, 0.4] }}
+                        className={`mt-4 text-sm tracking-[0.3em] font-light ${canSkip ? 'text-white/80' : 'text-white/40'}`}
+                        animate={{ 
+                          opacity: canSkip ? [0.6, 1, 0.6] : [0.4, 0.8, 0.4],
+                          scale: canSkip ? [1, 1.05, 1] : [1, 1, 1]
+                        }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
-                        CLICK TO CONTINUE
+                        {canSkip ? 'CLICK TO CONTINUE' : 'LOADING...'}
                       </motion.div>
                     )}
                   </div>

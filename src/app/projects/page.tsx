@@ -27,8 +27,7 @@ const projects: Project[] = [
             { name: "Python", icon: SiPython },
             { name: "Encryption", icon: SiPython },
         ],
-        githubUrl: "https://github.com/rushikesh0022/p2p_filetransfer",
-        featured: true,
+        githubUrl: "https://github.com/rushikesh0022/p2p_filetransfer"
     },
     {
         id: 2,
@@ -38,8 +37,7 @@ const projects: Project[] = [
             { name: "Python", icon: SiPython },
             { name: "AI/ML", icon: SiPython },
         ],
-        githubUrl: "https://github.com/rushikesh0022/practice_qp_generator",
-        featured: true,
+        githubUrl: "https://github.com/rushikesh0022/practice_qp_generator"
     },
     {
         id: 3,
@@ -49,8 +47,7 @@ const projects: Project[] = [
             { name: "C", icon: SiC },
             { name: "ARM64", icon: SiC },
         ],
-        githubUrl: "https://github.com/rushikesh0022/minimalist_os",
-        featured: true,
+        githubUrl: "https://github.com/rushikesh0022/minimalist_os"
     },
     {
         id: 4,

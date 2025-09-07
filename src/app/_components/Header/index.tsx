@@ -42,9 +42,9 @@ export default function Header() {
   return (
     <div className="flex justify-between">
       <nav className="flex gap-4">
-        {navLinks.map(({ name, href, icon: Icon }) => (
+        {navLinks.map(({ label, href, icon: Icon }) => (
           <NavLink key={href} href={href} Icon={Icon}>
-            {name}
+            {label}
           </NavLink>
         ))}
       </nav>
